@@ -13,6 +13,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Fluttertube', home: Home());
+    return MaterialApp(
+      title: 'Fluttertube',
+      debugShowCheckedModeBanner: false,
+      home: Home(),
+    );
   }
 }
