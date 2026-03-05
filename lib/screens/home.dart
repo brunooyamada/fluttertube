@@ -2,6 +2,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertube/blocs/videos_bloc.dart';
 import 'package:fluttertube/delegates/data_search.dart';
+import 'package:fluttertube/widgets/video_tile.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -34,14 +35,16 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
+      backgroundColor: Colors.black,
       body: StreamBuilder(
         stream: BlocProvider.getBloc<VideosBloc>().outVideos,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return null;
+                return VideoTile(snapshot.data[index]);
               },
+              itemCount: snapshot.data.length,
             );
           } else {
             return Container();
