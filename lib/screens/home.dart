@@ -55,7 +55,6 @@ class Home extends StatelessWidget {
       backgroundColor: Colors.black,
       body: StreamBuilder(
         stream: bloc.outVideos,
-        initialData: [],
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
