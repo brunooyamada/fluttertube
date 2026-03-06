@@ -14,17 +14,22 @@ class VideosBloc implements BlocBase {
       StreamController<List<Video>>();
   Stream get outVideos => _videosController.stream;
 
-  final StreamController<String> _searchController = StreamController<String>();
+  final StreamController<String> _searchController =
+      StreamController<String>.broadcast();
   Sink get inSearch => _searchController.sink;
 
   VideosBloc({required this.api, required this.videos}) {
-    api = Api();
-
     _searchController.stream.listen(_search as Function(String));
   }
 
-  Future<void> _search(String search) async {
-    videos = await api.search(search);
+  Future<void> _search(String? search) async {
+    if (search != null && search.isNotEmpty) {
+      _videosController.sink.add([]);
+      videos = await api.search(search);
+    } else {
+      videos += await api.nextPage();
+    }
+
     _videosController.sink.add(videos);
   }
 

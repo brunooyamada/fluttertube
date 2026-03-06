@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertube/api.dart';
+import 'package:fluttertube/blocs/favorite_blocs.dart';
 import 'package:fluttertube/blocs/videos_bloc.dart';
 import 'package:fluttertube/screens/home.dart';
 
@@ -16,7 +17,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      blocs: [Bloc((i) => VideosBloc(api: Api(), videos: []))],
+      blocs: [
+        Bloc((i) => VideosBloc(api: Api(), videos: [])),
+        Bloc((i) => FavoriteBlocs()),
+      ],
       dependencies: [Dependency((i) => Api())],
       child: MaterialApp(
         title: 'Fluttertube',
