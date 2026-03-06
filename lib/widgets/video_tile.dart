@@ -1,6 +1,6 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertube/blocs/favorite_blocs.dart';
+import 'package:fluttertube/blocs/favorite_bloc.dart';
 import 'package:fluttertube/models/video.dart';
 
 class VideoTile extends StatelessWidget {
@@ -9,7 +9,7 @@ class VideoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.getBloc<FavoriteBlocs>();
+    final bloc = BlocProvider.getBloc<FavoriteBloc>();
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 4),
